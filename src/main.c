@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 // ------------------------------------------------------------
-// Definitions and Structures
+// Definitions, Prototypes
 
 // TODO HERE
 // ------------------------------------------------------------
@@ -30,12 +30,14 @@ int main(void)
 
     int framesCounter = 0;
 
-    Vector2 testPosition = { 200.0f, 200.0f };
-
     Vector2 mousePosition;
 
     // Font Settings
     Font mainFont = LoadFont("resources/fonts/pixantiqua.png");
+    Vector2 fontPosition = { 200.0f, 200.0f };
+    Color fontColor = WHITE;
+    float fontSize = 20;
+    float fontSpacing = 4;
 
     // ------------------------------------------------------------
 
@@ -55,7 +57,7 @@ int main(void)
 
             ClearBackground(BLACK);
 
-            DrawTextEx(mainFont, "Testing", testPosition, (float)20, (float)4, WHITE);
+            DrawTextEx(mainFont, "Testing", fontPosition, fontSize, fontSpacing, fontColor);
             
         EndDrawing();
 
