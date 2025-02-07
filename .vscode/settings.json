@@ -9,6 +9,10 @@
 		"**/*.exe": true,
 	},
 	"files.associations": {
-		"resource_dir.h": "c"
+		"resource_dir.h": "c",
+		"game_content.h": "c",
+		"raylib.h": "c",
+		"stdbool.h": "c",
+		"stdlib.h": "c"
 	}
 }
