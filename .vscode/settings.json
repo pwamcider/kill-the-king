@@ -13,6 +13,7 @@
 		"game_content.h": "c",
 		"raylib.h": "c",
 		"stdbool.h": "c",
-		"stdlib.h": "c"
+		"stdlib.h": "c",
+		"support_functions.h": "c"
 	}
 }
