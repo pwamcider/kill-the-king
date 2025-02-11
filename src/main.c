@@ -2,14 +2,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "functions.h"
-#include "game_content.h"
 #include "raylib.h"
+#include "story_content.h"
+#include "support_functions.h"
 
 // ------------------------------------------------------------
 // Definitions
 
-// TODO HERE
+#define NUM_FRAMES 3
+
 // ------------------------------------------------------------
 
 int main(void)
@@ -21,27 +22,35 @@ int main(void)
     const int screenHeight = 720;
 
     InitWindow(screenWidth, screenHeight, "Kill the King");
+    InitAudioDevice();
 
     SetExitKey(KEY_NULL);
-
     SetTargetFPS(60);
 
-    int framesCounter = 0;
-
-    Vector2 mousePosition;
-
-    // Font Settings
+    // Resource Load
     Font textFont = LoadFont("resources/fonts/pixantiqua.png");
-    Vector2 textPosition = { 200.0f, 200.0f };
+    Sound btnSound = LoadSound("resources/temp_buttonfx.wav");
+    Texture2D btnSprite = LoadTexture("resources/temp_button.png");
+
+    // Audio Setup
+
+    // Button Setup
+    bool btnAction = false;
+    float btnFrameHeight = (float)btnSprite.height/NUM_FRAMES;
+    int btnState = 0;    // 0-NORMAL, 2-HOVER, 2-PRESSED
+    Rectangle btnBounds = { screenWidth/3.0f, screenHeight/3.0f, (float)btnSprite.width, btnFrameHeight};
+    Rectangle btnSourceRec = { 0, 0, (float)btnSprite.width, btnFrameHeight };
+
+    // Font Setup
     Color textColor = WHITE;
+    Vector2 textPosition = { 200.0f, 200.0f };
     int textPrintSpeed = 2;    // Lower number increases speed.
     int textSize = 15;
     int textSpacing = 4;
 
-    // Test Button
-    Rectangle btnBounds = { screenWidth/2.0f, screenHeight/2.0f, 200, 50};
-    Vector2 btnPosition = { 0.0f, 0.0f };
-    Color btnColor = WHITE;
+    // Variables
+    int framesCounter = 0;
+    Vector2 mousePosition;
 
     // ------------------------------------------------------------
 
@@ -53,22 +62,37 @@ int main(void)
         // ------------------------------------------------------------
         framesCounter++;
         mousePosition = GetMousePosition();
+        btnAction = false;
 
         if (CheckCollisionPointRec(mousePosition, btnBounds))
         {
             if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
             {
-                btnColor = RED;
+                btnState = 2;
             }
             else
             {
-                btnColor = GRAY;
+                btnState = 1;
             }
+
+            if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+            {
+                btnAction = true;
+            }
+            
         }
         else
         {
-            btnColor = WHITE;
+            btnState = 0;
         }
+
+        if (btnAction)
+        {
+            PlaySound(btnSound);
+        }
+        
+        btnSourceRec.y = btnState*btnFrameHeight;
+
 
         // Draw
         // ------------------------------------------------------------
@@ -77,12 +101,12 @@ int main(void)
 
             ClearBackground(BLACK);
 
-            DrawRectanglePro(btnBounds, btnPosition, 0, btnColor);
+            DrawTextureRec(btnSprite, btnSourceRec, (Vector2){btnBounds.x, btnBounds.y }, WHITE);
 
             DrawTextEx(textFont, TextSubtext("You awaken in the dark. Your head pounds, and your muscles ache. The cold is in your bones.", 0, framesCounter/textPrintSpeed), textPosition, textSize, textSpacing, textColor);
             
         EndDrawing();
-
+        
         // ------------------------------------------------------------
     }
 
@@ -90,6 +114,10 @@ int main(void)
     // ------------------------------------------------------------
 
     UnloadFont(textFont);
+    UnloadSound(btnSound);
+    UnloadTexture(btnSprite);
+
+    CloseAudioDevice();
 
     CloseWindow();
 
