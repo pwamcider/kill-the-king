@@ -2,10 +2,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "functions.h"
+#include "game_content.h"
 #include "raylib.h"
 
 // ------------------------------------------------------------
-// Definitions, Prototypes
+// Definitions
 
 // TODO HERE
 // ------------------------------------------------------------
@@ -29,11 +31,17 @@ int main(void)
     Vector2 mousePosition;
 
     // Font Settings
-    Font mainFont = LoadFont("resources/fonts/pixantiqua.png");
-    Vector2 fontPosition = { 200.0f, 200.0f };
-    Color fontColor = WHITE;
-    float fontSize = 20;
-    float fontSpacing = 4;
+    Font textFont = LoadFont("resources/fonts/pixantiqua.png");
+    Vector2 textPosition = { 200.0f, 200.0f };
+    Color textColor = WHITE;
+    int textPrintSpeed = 2;    // Lower number increases speed.
+    int textSize = 15;
+    int textSpacing = 4;
+
+    // Test Button
+    Rectangle btnBounds = { screenWidth/2.0f, screenHeight/2.0f, 200, 50};
+    Vector2 btnPosition = { 0.0f, 0.0f };
+    Color btnColor = WHITE;
 
     // ------------------------------------------------------------
 
@@ -44,7 +52,23 @@ int main(void)
         // Update
         // ------------------------------------------------------------
         framesCounter++;
+        mousePosition = GetMousePosition();
 
+        if (CheckCollisionPointRec(mousePosition, btnBounds))
+        {
+            if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+            {
+                btnColor = RED;
+            }
+            else
+            {
+                btnColor = GRAY;
+            }
+        }
+        else
+        {
+            btnColor = WHITE;
+        }
 
         // Draw
         // ------------------------------------------------------------
@@ -53,7 +77,9 @@ int main(void)
 
             ClearBackground(BLACK);
 
-            DrawTextEx(mainFont, "Testing", fontPosition, fontSize, fontSpacing, fontColor);
+            DrawRectanglePro(btnBounds, btnPosition, 0, btnColor);
+
+            DrawTextEx(textFont, TextSubtext("You awaken in the dark. Your head pounds, and your muscles ache. The cold is in your bones.", 0, framesCounter/textPrintSpeed), textPosition, textSize, textSpacing, textColor);
             
         EndDrawing();
 
@@ -63,7 +89,7 @@ int main(void)
     // De-Initialization
     // ------------------------------------------------------------
 
-    UnloadFont(mainFont);
+    UnloadFont(textFont);
 
     CloseWindow();
 
