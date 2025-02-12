@@ -29,27 +29,34 @@ int main(void)
 
     // Resource Load
     Font textFont = LoadFont("resources/fonts/pixantiqua.png");
-    Sound btnSound = LoadSound("resources/temp_buttonfx.wav");
-    Texture2D btnSprite = LoadTexture("resources/temp_button.png");
+    Sound buttonSound = LoadSound("resources/temp_buttonfx.wav");
+    Texture2D buttonSprite = LoadTexture("resources/temp_button.png");
 
     // Audio Setup
 
     // Button Setup
-    bool btnAction = false;
-    float btnFrameHeight = (float)btnSprite.height/NUM_FRAMES;
-    int btnState = 0;    // 0-NORMAL, 2-HOVER, 2-PRESSED
-    Rectangle btnBounds = { screenWidth/3.0f, screenHeight/3.0f, (float)btnSprite.width, btnFrameHeight};
-    Rectangle btnSourceRec = { 0, 0, (float)btnSprite.width, btnFrameHeight };
+    enum ButtonState {
+        BUTTON_IDLE = 0,
+        BUTTON_HOVER = 1,
+        BUTTON_PRESSED = 2,
+    };
+
+    enum ButtonState buttonState;
+    float buttonFrameHeight = (float)buttonSprite.height/NUM_FRAMES;
+    Rectangle buttonBounds = { screenWidth/3.0f, screenHeight/3.0f, (float)buttonSprite.width, buttonFrameHeight};
+    Rectangle buttonSourceRec = { 0, 0, (float)buttonSprite.width, buttonFrameHeight };
 
     // Font Setup
     Color textColor = WHITE;
     Vector2 textPosition = { 200.0f, 200.0f };
+
     int textPrintSpeed = 2;    // Lower number increases speed.
     int textSize = 15;
     int textSpacing = 4;
 
     // Variables
     int framesCounter = 0;
+
     Vector2 mousePosition;
 
     // ------------------------------------------------------------
@@ -62,36 +69,23 @@ int main(void)
         // ------------------------------------------------------------
         framesCounter++;
         mousePosition = GetMousePosition();
-        btnAction = false;
+        const bool isMouseOver = CheckCollisionPointRec(mousePosition, buttonBounds);
 
-        if (CheckCollisionPointRec(mousePosition, btnBounds))
+        if (isMouseOver)
         {
-            if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
-            {
-                btnState = 2;
-            }
-            else
-            {
-                btnState = 1;
-            }
-
-            if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
-            {
-                btnAction = true;
-            }
-            
+            buttonState = IsMouseButtonDown(MOUSE_BUTTON_LEFT) ? BUTTON_PRESSED : BUTTON_HOVER;
         }
         else
         {
-            btnState = 0;
+            buttonState = BUTTON_IDLE;
         }
 
-        if (btnAction)
+        if (isMouseOver && IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
-            PlaySound(btnSound);
+            PlaySound(buttonSound);
         }
         
-        btnSourceRec.y = btnState*btnFrameHeight;
+        buttonSourceRec.y = buttonState*buttonFrameHeight;
 
 
         // Draw
@@ -101,7 +95,7 @@ int main(void)
 
             ClearBackground(BLACK);
 
-            DrawTextureRec(btnSprite, btnSourceRec, (Vector2){btnBounds.x, btnBounds.y }, WHITE);
+            DrawTextureRec(buttonSprite, buttonSourceRec, (Vector2){buttonBounds.x, buttonBounds.y }, WHITE);
 
             DrawTextEx(textFont, TextSubtext("You awaken in the dark. Your head pounds, and your muscles ache. The cold is in your bones.", 0, framesCounter/textPrintSpeed), textPosition, textSize, textSpacing, textColor);
             
@@ -114,8 +108,8 @@ int main(void)
     // ------------------------------------------------------------
 
     UnloadFont(textFont);
-    UnloadSound(btnSound);
-    UnloadTexture(btnSprite);
+    UnloadSound(buttonSound);
+    UnloadTexture(buttonSprite);
 
     CloseAudioDevice();
 
