@@ -9,7 +9,7 @@
 // ------------------------------------------------------------
 // Definitions
 
-#define NUM_FRAMES 3
+#define NUM_BUTTON_FRAMES 3
 
 // ------------------------------------------------------------
 
@@ -42,17 +42,18 @@ int main(void)
     };
 
     enum ButtonState buttonState;
-    float buttonFrameHeight = (float)buttonSprite.height/NUM_FRAMES;
-    Rectangle buttonBounds = { screenWidth/3.0f, screenHeight/3.0f, (float)buttonSprite.width, buttonFrameHeight};
-    Rectangle buttonSourceRec = { 0, 0, (float)buttonSprite.width, buttonFrameHeight };
+    float buttonFrameHeight = (float)buttonSprite.height/NUM_BUTTON_FRAMES;
+    Rectangle buttonSource = { 0, 0, (float)buttonSprite.width, buttonFrameHeight };
+    Rectangle buttonDest = { screenWidth/3.0f, screenHeight/3.0f, (float)buttonSprite.width, buttonFrameHeight };
+    Vector2 buttonOrigin = { 0, 0 };
 
     // Font Setup
-    Color textColor = WHITE;
-    Vector2 textPosition = { 200.0f, 200.0f };
-
     int textPrintSpeed = 2;    // Lower number increases speed.
     int textSize = 15;
     int textSpacing = 4;
+    
+    Color textColor = WHITE;
+    Vector2 textPosition = { 200.0f, 200.0f };
 
     // Variables
     int framesCounter = 0;
@@ -69,7 +70,7 @@ int main(void)
         // ------------------------------------------------------------
         framesCounter++;
         mousePosition = GetMousePosition();
-        const bool isMouseOver = CheckCollisionPointRec(mousePosition, buttonBounds);
+        const bool isMouseOver = CheckCollisionPointRec(mousePosition, buttonDest);
 
         if (isMouseOver)
         {
@@ -85,7 +86,7 @@ int main(void)
             PlaySound(buttonSound);
         }
         
-        buttonSourceRec.y = buttonState*buttonFrameHeight;
+        buttonSource.y = buttonState*buttonFrameHeight;
 
 
         // Draw
@@ -95,7 +96,7 @@ int main(void)
 
             ClearBackground(BLACK);
 
-            DrawTextureRec(buttonSprite, buttonSourceRec, (Vector2){buttonBounds.x, buttonBounds.y }, WHITE);
+            DrawTexturePro(buttonSprite, buttonSource, buttonDest, buttonOrigin, 0, WHITE);
 
             DrawTextEx(textFont, TextSubtext("You awaken in the dark. Your head pounds, and your muscles ache. The cold is in your bones.", 0, framesCounter/textPrintSpeed), textPosition, textSize, textSpacing, textColor);
             
