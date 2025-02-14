@@ -44,16 +44,29 @@ int main(void)
     enum ButtonState buttonState;
     float buttonFrameHeight = (float)buttonSprite.height/NUM_BUTTON_FRAMES;
     Rectangle buttonSource = { 0, 0, (float)buttonSprite.width, buttonFrameHeight };
-    Rectangle buttonDest = { screenWidth/3.0f, screenHeight/3.0f, (float)buttonSprite.width, buttonFrameHeight };
-    Vector2 buttonOrigin = { 0, 0 };
+    Rectangle buttonDest = { 850, 75, (float)buttonSprite.width, buttonFrameHeight };
+    Vector2 buttonSpriteOrigin = { 0, 0 };
 
-    // Font Setup
+    // Line Setup
+    float lineThickness = 1;
+
+    Color lineColor = WHITE;
+    Vector2 lineStart = { screenWidth/2.0f, 50.0f };
+    Vector2 lineStop = { screenWidth/2.0f, 670.0f };
+
+    // Text Setup
     int textPrintSpeed = 2;    // Lower number increases speed.
     int textSize = 15;
     int textSpacing = 4;
+    int textVertSpacing = 10;
     
     Color textColor = WHITE;
-    Vector2 textPosition = { 200.0f, 200.0f };
+    Vector2 textPosition = { 50.0f, 50.0f };
+    Vector2 textOrigin = { 0.0f, 0.0f };
+    
+    char *textString = "You awaken in the dark.\n"
+                       "Your head pounds and your muscles ache.\n"
+                       "The cold is in your bones.";
 
     // Variables
     int framesCounter = 0;
@@ -95,10 +108,14 @@ int main(void)
         BeginDrawing();
 
             ClearBackground(BLACK);
+            
+            SetTextLineSpacing(textVertSpacing);
 
-            DrawTexturePro(buttonSprite, buttonSource, buttonDest, buttonOrigin, 0, WHITE);
+            DrawLineEx(lineStart, lineStop, lineThickness, lineColor);
 
-            DrawTextEx(textFont, TextSubtext("You awaken in the dark. Your head pounds, and your muscles ache. The cold is in your bones.", 0, framesCounter/textPrintSpeed), textPosition, textSize, textSpacing, textColor);
+            DrawTexturePro(buttonSprite, buttonSource, buttonDest, buttonSpriteOrigin, 0, WHITE);
+
+            DrawTextPro(textFont, TextSubtext(textString, 0, framesCounter/textPrintSpeed), textPosition, textOrigin, 0.0f, textSize, textSpacing, textColor);
             
         EndDrawing();
         
