@@ -1,12 +1,16 @@
 #pragma once
 
+#include <stdbool.h>
+
 // Structure Definitions
 // ------------------------------------------------------------
+
+struct Page;
 
 typedef struct Option
 {
     char prompt[256];
-    struct Event* to_event;
+    struct Page* toPage;
 } Option;
 
 typedef struct Page
@@ -14,9 +18,9 @@ typedef struct Page
     char text[2048];
     struct Option options[4];
     bool checkpoint;
-    bool game_over;
-    bool raised_alarm;
-    bool* page_visited;
+    bool gameOver;
+    bool raisedAlarm;
+    bool* pageVisited;
 } Page;
 
 // ------------------------------------------------------------
