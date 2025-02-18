@@ -2,9 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "functions.h"
 #include "raylib.h"
 #include "story_content.h"
-#include "support_functions.h"
 
 // ------------------------------------------------------------
 // Definitions
@@ -70,7 +70,6 @@ int main(void)
 
     // Variables
     int framesCounter = 0;
-
     Vector2 mousePosition;
 
     // ------------------------------------------------------------
