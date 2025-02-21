@@ -23,4 +23,11 @@ typedef struct Page
     bool* pageVisited;
 } Page;
 
+
+// Page Declarations
+// ------------------------------------------------------------
+
+extern Page TEST1;
+extern Page TEST2;
+
 // ------------------------------------------------------------
