@@ -41,10 +41,10 @@ int main(void)
         BUTTON_PRESSED = 2,
     };
 
+    // TODO - clean all this stuff up!
     enum ButtonState buttonState;
     float buttonFrameHeight = (float)buttonSprite.height/NUM_BUTTON_FRAMES;
-    Rectangle buttonSource = { 0, 0, (float)buttonSprite.width, buttonFrameHeight };
-    Rectangle buttonDest = { 850, 75, (float)buttonSprite.width, buttonFrameHeight };
+    int buttonAlignmentX = 850;
     Vector2 buttonSpriteOrigin = { 0, 0 };
 
     // Line Setup
@@ -63,14 +63,12 @@ int main(void)
     Color textColor = WHITE;
     Vector2 textPosition = { 50.0f, 50.0f };
     Vector2 textOrigin = { 0.0f, 0.0f };
-    
-    char *textString = "You awaken in the dark.\n"
-                       "Your head pounds and your muscles ache.\n"
-                       "The cold is in your bones.";
 
-    // Variables
+    // Startup Variables
     int framesCounter = 0;
     Vector2 mousePosition;
+    Page *currentPage = &TEST1;
+
 
     // ------------------------------------------------------------
 
@@ -82,24 +80,48 @@ int main(void)
         // ------------------------------------------------------------
         framesCounter++;
         mousePosition = GetMousePosition();
-        const bool isMouseOver = CheckCollisionPointRec(mousePosition, buttonDest);
 
-        if (isMouseOver)
-        {
-            buttonState = IsMouseButtonDown(MOUSE_BUTTON_LEFT) ? BUTTON_PRESSED : BUTTON_HOVER;
-        }
-        else
-        {
-            buttonState = BUTTON_IDLE;
-        }
+        int numOptions = CountOptions(currentPage);
+        int buttonOffsetY = 1;
+        Rectangle buttonSource[numOptions];
+        Rectangle buttonDest[numOptions];
+        // TODO - may need to minus 1 for the above array, since numOptions returns the total count
+        // but array is zero indexed
 
-        if (isMouseOver && IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+        for (int i = 0; i < numOptions; i++)
         {
-            PlaySound(buttonSound);
-        }
-        
-        buttonSource.y = buttonState*buttonFrameHeight;
+            buttonSource[i].x = 0;
+            buttonSource[i].y = 0;
+            buttonSource[i].width = (float)buttonSprite.width;
+            buttonSource[i].height = buttonFrameHeight;
+            
+            buttonDest[i].x = buttonAlignmentX;
+            buttonDest[i].y = buttonOffsetY * (float)buttonSprite.height/NUM_BUTTON_FRAMES;
+            buttonDest[i].width = (float)buttonSprite.width;
+            buttonDest[i].height = buttonFrameHeight;
 
+            const bool isMouseOver = CheckCollisionPointRec(mousePosition, buttonDest[i]);
+
+            if (isMouseOver)
+            {
+                buttonState = IsMouseButtonDown(MOUSE_BUTTON_LEFT) ? BUTTON_PRESSED : BUTTON_HOVER;
+            }
+            else
+            {
+                buttonState = BUTTON_IDLE;
+            }
+
+            if (isMouseOver && IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+            {
+                PlaySound(buttonSound);
+                framesCounter = 0;
+                currentPage = currentPage->options[i].toPage;
+            }
+            
+            buttonSource[i].y = buttonState*buttonFrameHeight;
+
+            buttonOffsetY++;
+        }
 
         // Draw
         // ------------------------------------------------------------
@@ -110,11 +132,15 @@ int main(void)
             
             SetTextLineSpacing(textVertSpacing);
 
+            for (int i = 0; i < numOptions; i++)
+            {
+                DrawTexturePro(buttonSprite, buttonSource[i], buttonDest[i], buttonSpriteOrigin, 0, WHITE);
+            }
+        
             DrawLineEx(lineStart, lineStop, lineThickness, lineColor);
 
-            DrawTexturePro(buttonSprite, buttonSource, buttonDest, buttonSpriteOrigin, 0, WHITE);
-
-            DrawTextPro(textFont, TextSubtext(textString, 0, framesCounter/textPrintSpeed), textPosition, textOrigin, 0.0f, textSize, textSpacing, textColor);
+            DrawTextPro(textFont, TextSubtext(currentPage->text, 0, framesCounter/textPrintSpeed),
+            textPosition, textOrigin, 0.0f, textSize, textSpacing, textColor);
             
         EndDrawing();
         
@@ -129,7 +155,6 @@ int main(void)
     UnloadTexture(buttonSprite);
 
     CloseAudioDevice();
-
     CloseWindow();
 
     // ------------------------------------------------------------
