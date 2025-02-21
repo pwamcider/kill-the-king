@@ -51,5 +51,4 @@ void PlayPage(Page* page)
     {
         ALARM++;
     }
-    
 }
