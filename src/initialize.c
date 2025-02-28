@@ -1,25 +1,21 @@
 #include "initialize.h"
 #include "raylib.h"
 
-// Variables
+// Screen
 // ------------------------------------------------------------
 
 int screenWidth = 1280;
 int screenHeight = 720;
 
-Font textFont; 
-Sound buttonSound;
-Texture2D buttonSprite;
-
 // Functions
 // ------------------------------------------------------------
 
-int GetGameHeight(void) {
-    return screenHeight;
+int FindScreenWidth(void) {
+    return screenWidth;
 }
 
-int GetGameWidth(void) {
-    return screenWidth;
+int FindScreenHeight(void) {
+    return screenHeight;
 }
 
  void InitGame(void){
@@ -30,8 +26,7 @@ int GetGameWidth(void) {
     SetTargetFPS(60);
 }
 
-void ResourceLoad(void) {
-    textFont = LoadFont("resources/fonts/pixantiqua.png");
-    buttonSound = LoadSound("resources/temp_buttonfx.wav");
-    buttonSprite = LoadTexture("resources/temp_button.png");
+void ShutdownGame(void){
+    CloseAudioDevice();
+    CloseWindow();
 }
