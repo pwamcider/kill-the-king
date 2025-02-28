@@ -3,13 +3,9 @@
 #include <stdlib.h>
 
 #include "functions.h"
+#include "initialize.h"
 #include "raylib.h"
 #include "story_content.h"
-
-// ------------------------------------------------------------
-// Definitions
-
-#define NUM_BUTTON_FRAMES 3
 
 // ------------------------------------------------------------
 
@@ -18,21 +14,23 @@ int main(void)
     // Initialization
     // ------------------------------------------------------------
 
-    const int screenWidth = 1280;
+    /*const int screenWidth = 1280;
     const int screenHeight = 720;
-
+    
     InitWindow(screenWidth, screenHeight, "Kill the King");
     InitAudioDevice();
 
     SetExitKey(KEY_NULL);
-    SetTargetFPS(60);
+    SetTargetFPS(60);*/
+
+    InitGame();
 
     // Resource Load
-    Font textFont = LoadFont("resources/fonts/pixantiqua.png");
+    /*Font textFont = LoadFont("resources/fonts/pixantiqua.png");
     Sound buttonSound = LoadSound("resources/temp_buttonfx.wav");
-    Texture2D buttonSprite = LoadTexture("resources/temp_button.png");
+    Texture2D buttonSprite = LoadTexture("resources/temp_button.png");*/
 
-    // Audio Setup
+    ResourceLoad();
 
     // Button Setup
     enum ButtonState {
@@ -43,7 +41,8 @@ int main(void)
 
     // TODO - clean all this stuff up!
     enum ButtonState buttonState;
-    float buttonFrameHeight = (float)buttonSprite.height/NUM_BUTTON_FRAMES;
+    int buttonNumFrames = 3;
+    float buttonFrameHeight = (float)buttonSprite.height/buttonNumFrames;
     int buttonAlignmentX = 850;
     Vector2 buttonSpriteOrigin = { 0, 0 };
 
@@ -51,8 +50,8 @@ int main(void)
     float lineThickness = 1;
 
     Color lineColor = WHITE;
-    Vector2 lineStart = { screenWidth/2.0f, 50.0f };
-    Vector2 lineStop = { screenWidth/2.0f, 670.0f };
+    Vector2 lineStart = { GetScreenWidth()/2.0f, 50.0f };
+    Vector2 lineStop = { GetScreenWidth()/2.0f, 670.0f };
 
     // Text Setup
     int textPrintSpeed = 2;    // Lower number increases speed.
@@ -96,7 +95,7 @@ int main(void)
             buttonSource[i].height = buttonFrameHeight;
             
             buttonDest[i].x = buttonAlignmentX;
-            buttonDest[i].y = buttonOffsetY * (float)buttonSprite.height/NUM_BUTTON_FRAMES;
+            buttonDest[i].y = buttonOffsetY * (float)buttonSprite.height/buttonNumFrames;
             buttonDest[i].width = (float)buttonSprite.width;
             buttonDest[i].height = buttonFrameHeight;
 
