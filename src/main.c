@@ -5,30 +5,14 @@
 #include "functions.h"
 #include "initialize.h"
 #include "raylib.h"
+#include "resources.h"
 #include "story_content.h"
 
 // ------------------------------------------------------------
 
 int main(void)
 {
-    // Initialization
-    // ------------------------------------------------------------
-
-    /*const int screenWidth = 1280;
-    const int screenHeight = 720;
-    
-    InitWindow(screenWidth, screenHeight, "Kill the King");
-    InitAudioDevice();
-
-    SetExitKey(KEY_NULL);
-    SetTargetFPS(60);*/
-
     InitGame();
-
-    // Resource Load
-    /*Font textFont = LoadFont("resources/fonts/pixantiqua.png");
-    Sound buttonSound = LoadSound("resources/temp_buttonfx.wav");
-    Texture2D buttonSprite = LoadTexture("resources/temp_button.png");*/
 
     ResourceLoad();
 
@@ -50,8 +34,8 @@ int main(void)
     float lineThickness = 1;
 
     Color lineColor = WHITE;
-    Vector2 lineStart = { GetScreenWidth()/2.0f, 50.0f };
-    Vector2 lineStop = { GetScreenWidth()/2.0f, 670.0f };
+    Vector2 lineStart = { FindScreenWidth()/2.0f, 50.0f };
+    Vector2 lineStop = { FindScreenWidth()/2.0f, 670.0f };
 
     // Text Setup
     int textPrintSpeed = 2;    // Lower number increases speed.
@@ -149,12 +133,9 @@ int main(void)
     // De-Initialization
     // ------------------------------------------------------------
 
-    UnloadFont(textFont);
-    UnloadSound(buttonSound);
-    UnloadTexture(buttonSprite);
+    ResourceUnload();
 
-    CloseAudioDevice();
-    CloseWindow();
+    ShutdownGame();
 
     // ------------------------------------------------------------
 
