@@ -8,6 +8,7 @@
 #include "raylib.h"
 #include "resources.h"
 #include "story_content.h"
+#include "ui.h"
 
 // ------------------------------------------------------------
 
@@ -16,13 +17,6 @@ int main(void)
     InitGame();
 
     ResourceLoad();
-
-    // Line Setup
-    float lineThickness = 1;
-
-    Color lineColor = WHITE;
-    Vector2 lineStart = { FindScreenWidth()/2.0f, 50.0f };
-    Vector2 lineStop = { FindScreenWidth()/2.0f, 670.0f };
 
     // Text Setup
     int textPrintSpeed = 2;    // Lower number increases speed.
@@ -105,8 +99,7 @@ int main(void)
             {
                 DrawTexturePro(buttonSprite, buttonSource[i], buttonDest[i], BUTTON.spriteOrigin, 0, WHITE);
             }
-        
-            DrawLineEx(lineStart, lineStop, lineThickness, lineColor);
+            DrawLineEx(GetLineStart(), GetLineStop(), LINE.thickness, LINE.color);
 
             DrawTextPro(textFont, TextSubtext(currentPage->text, 0, framesCounter/textPrintSpeed),
             textPosition, textOrigin, 0.0f, textSize, textSpacing, textColor);
