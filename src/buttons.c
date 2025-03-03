@@ -9,5 +9,5 @@ Button BUTTON = {
     .offsetY = 1,
     .state = 0, // 0 = Idle, 1 = Hover, 2 = Pressed
     .color = WHITE,
-    .spriteOrigin = { 0, 0 },
+    .spriteOrigin = { 0.0f, 0.0f },
 };
