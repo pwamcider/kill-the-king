@@ -8,6 +8,7 @@
 #include "raylib.h"
 #include "resources.h"
 #include "story_content.h"
+#include "text.h"
 #include "ui.h"
 
 // ------------------------------------------------------------
@@ -18,21 +19,10 @@ int main(void)
 
     ResourceLoad();
 
-    // Text Setup
-    int textPrintSpeed = 2;    // Lower number increases speed.
-    int textSize = 15;
-    int textSpacing = 4;
-    int textVertSpacing = 10;
-    
-    Color textColor = WHITE;
-    Vector2 textPosition = { 50.0f, 50.0f };
-    Vector2 textOrigin = { 0.0f, 0.0f };
-
     // Startup Variables
     int framesCounter = 0;
     Vector2 mousePosition;
     Page *currentPage = &TEST1;
-
 
     // ------------------------------------------------------------
 
@@ -93,7 +83,7 @@ int main(void)
 
             ClearBackground(BLACK);
             
-            SetTextLineSpacing(textVertSpacing);
+            SetTextLineSpacing(TEXT.vertSpacing);
 
             for (int i = 0; i < numOptions; i++)
             {
@@ -101,8 +91,11 @@ int main(void)
             }
             DrawLineEx(GetLineStart(), GetLineStop(), LINE.thickness, LINE.color);
 
-            DrawTextPro(textFont, TextSubtext(currentPage->text, 0, framesCounter/textPrintSpeed),
-            textPosition, textOrigin, 0.0f, textSize, textSpacing, textColor);
+            DrawTextPro(
+                textFont,
+                TextSubtext(currentPage->text, 0, framesCounter/TEXT.printSpeed),
+                TEXT.position, TEXT.origin, TEXT.rotation, TEXT.size, TEXT.spacing, TEXT.color
+            );
             
         EndDrawing();
         
