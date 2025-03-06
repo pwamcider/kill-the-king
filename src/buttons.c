@@ -1,7 +1,5 @@
 #include "buttons.h"
 
-// ------------------------------------------------------------
-
 Button BUTTON = {
     .frameHeight = 0.0,
     .alignmentX = 850,
