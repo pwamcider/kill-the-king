@@ -29,8 +29,8 @@ void UpdateGame(void) {
 
     for (int i = 0; i < numOptions; i++)
     {
-        buttonSource[i].x = 0;
-        buttonSource[i].y = 0;
+        buttonSource[i].x = 0.0f;
+        buttonSource[i].y = 0.0f;
         buttonSource[i].width = (float)buttonSprite.width;
         buttonSource[i].height = BUTTON.frameHeight;
         
@@ -73,7 +73,18 @@ void UpdateGame(void) {
 
             for (int i = 0; i < numOptions; i++)
             {
+                // TODO - set custom color elsewhere; maybe in TEXT struct?
+                // TODO - remove rectangle if we're not using it.
+                // TODO - refine naming of accentPosition
+                Color myColor = { 40, 40, 40, 255 };
+                Vector2 accentPosition = { buttonDest[i].x, buttonDest[i].y - 5 };
                 DrawTexturePro(buttonSprite, buttonSource[i], buttonDest[i], BUTTON.spriteOrigin, 0, WHITE);
+                // DrawRectangle((int)accentPosition.x, (int)accentPosition.y, 250, 25, myColor);
+                DrawTextPro(
+                    textFont,
+                    currentPage->options[i].prompt,
+                    accentPosition, TEXT.origin, TEXT.rotation, TEXT.size, TEXT.spacing, TEXT.color
+                );
             }
             DrawLineEx(GetLineStart(), GetLineStop(), LINE.thickness, LINE.color);
 
