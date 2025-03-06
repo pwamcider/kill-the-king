@@ -2,9 +2,6 @@
 
 #include "raylib.h"
 
-// Declarations
-// ------------------------------------------------------------
-
 typedef struct Button {
     float frameHeight;
     int alignmentX;
