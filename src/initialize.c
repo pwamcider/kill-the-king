@@ -1,5 +1,4 @@
 #include "initialize.h"
-#include "raylib.h"
 
 // Screen
 // ------------------------------------------------------------
