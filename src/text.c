@@ -1,7 +1,5 @@
 #include "text.h"
 
-// ------------------------------------------------------------
-
 Text TEXT = {
     .rotation = 0.0f,
     .printSpeed = 2,    // Lower number increases speed.
