@@ -19,7 +19,6 @@ Vector2 mousePosition;
 
 void UpdateGame(void) {
     BUTTON.frameHeight = GetButtonSpriteHeight()/BUTTON.numFrames;
-    BUTTON.offsetY = 1;
     framesCounter++;
     mousePosition = GetMousePosition();
 
@@ -34,8 +33,8 @@ void UpdateGame(void) {
         buttonSource[i].width = (float)buttonSprite.width;
         buttonSource[i].height = BUTTON.frameHeight;
         
-        buttonDest[i].x = BUTTON.alignmentX;
-        buttonDest[i].y = BUTTON.offsetY * (float)buttonSprite.height/BUTTON.numFrames;
+        buttonDest[i].x = LAYOUT.buttonPosition[i].x;
+        buttonDest[i].y = LAYOUT.buttonPosition[i].y;
         buttonDest[i].width = (float)buttonSprite.width;
         buttonDest[i].height = BUTTON.frameHeight;
 
@@ -58,8 +57,6 @@ void UpdateGame(void) {
         }
         
         buttonSource[i].y = BUTTON.state*BUTTON.frameHeight;
-
-        BUTTON.offsetY++;
     }
 
     // Drawing Frame
@@ -76,16 +73,13 @@ void UpdateGame(void) {
                 // BOOKMARK/ TODO - make an array of Vector2 inside Text struct. Use that to create the proper
                 // locations for each option, that will then be chosen automatically by this loop.
                 // TODO - set custom color elsewhere; maybe in TEXT struct?
-                // TODO - remove rectangle if we're not using it.
-                // TODO - refine naming of accentPosition
                 // Color myColor = { 40, 40, 40, 255 };
-                Vector2 accentPosition = { buttonDest[i].x, buttonDest[i].y - 5 };
                 DrawTexturePro(buttonSprite, buttonSource[i], buttonDest[i], BUTTON.spriteOrigin, 0, WHITE);
                 // DrawRectangle((int)accentPosition.x, (int)accentPosition.y, 250, 25, myColor);
                 DrawTextPro(
                     textFont,
                     currentPage->options[i].prompt,
-                    accentPosition, TEXT.origin, TEXT.rotation, TEXT.size, TEXT.spacing, TEXT.color
+                    LAYOUT.promptPosition[i], TEXT.origin, TEXT.rotation, TEXT.size, TEXT.spacing, TEXT.color
                 );
             }
             DrawLineEx(GetLineStart(), GetLineStop(), LINE.thickness, LINE.color);
@@ -93,7 +87,7 @@ void UpdateGame(void) {
             DrawTextPro(
                 textFont,
                 TextSubtext(currentPage->text, 0, framesCounter/TEXT.printSpeed),
-                TEXT.mainPosition, TEXT.origin, TEXT.rotation, TEXT.size, TEXT.spacing, TEXT.color
+                TEXT.position, TEXT.origin, TEXT.rotation, TEXT.size, TEXT.spacing, TEXT.color
             );
             
     EndDrawing();
