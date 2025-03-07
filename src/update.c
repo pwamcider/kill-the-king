@@ -73,10 +73,12 @@ void UpdateGame(void) {
 
             for (int i = 0; i < numOptions; i++)
             {
+                // BOOKMARK/ TODO - make an array of Vector2 inside Text struct. Use that to create the proper
+                // locations for each option, that will then be chosen automatically by this loop.
                 // TODO - set custom color elsewhere; maybe in TEXT struct?
                 // TODO - remove rectangle if we're not using it.
                 // TODO - refine naming of accentPosition
-                Color myColor = { 40, 40, 40, 255 };
+                // Color myColor = { 40, 40, 40, 255 };
                 Vector2 accentPosition = { buttonDest[i].x, buttonDest[i].y - 5 };
                 DrawTexturePro(buttonSprite, buttonSource[i], buttonDest[i], BUTTON.spriteOrigin, 0, WHITE);
                 // DrawRectangle((int)accentPosition.x, (int)accentPosition.y, 250, 25, myColor);
@@ -91,7 +93,7 @@ void UpdateGame(void) {
             DrawTextPro(
                 textFont,
                 TextSubtext(currentPage->text, 0, framesCounter/TEXT.printSpeed),
-                TEXT.position, TEXT.origin, TEXT.rotation, TEXT.size, TEXT.spacing, TEXT.color
+                TEXT.mainPosition, TEXT.origin, TEXT.rotation, TEXT.size, TEXT.spacing, TEXT.color
             );
             
     EndDrawing();
