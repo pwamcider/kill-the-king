@@ -1,8 +1,17 @@
 #include "initialize.h"
 #include "ui.h"
 
-// Struct Initialization
+// Structs
 // ------------------------------------------------------------
+
+Layout LAYOUT = {
+    .buttonPosition = {
+         { 850.0f, 200.0f }, {850.0f, 300.0f }, { 850.0f, 400.0f }, { 850.0f, 500.0f } 
+    },
+    .promptPosition = {
+         { 800.0f, 200.0f }, {800.0f, 300.0f }, { 800.0f, 400.0f }, { 800.0f, 500.0f } 
+    },
+};
 
 Line LINE = {
     .color = WHITE,
@@ -10,7 +19,6 @@ Line LINE = {
     .start = { 0.0f, 0.0f }, 
     .stop = { 0.0f, 0.0f },
 };
-
 
 // Functions
 // ------------------------------------------------------------

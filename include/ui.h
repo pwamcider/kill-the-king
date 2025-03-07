@@ -2,8 +2,14 @@
 
 #include "raylib.h"
 
-// Declarations
+// Structs
 // ------------------------------------------------------------
+
+typedef struct Layout
+{
+    Vector2 buttonPosition[4];
+    Vector2 promptPosition[4];
+} Layout;
 
 typedef struct Line
 {
@@ -13,6 +19,7 @@ typedef struct Line
     Vector2 stop;
 } Line;
 
+extern Layout LAYOUT;
 extern Line LINE;
 
 // Prototypes
