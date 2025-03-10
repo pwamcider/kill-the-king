@@ -31,6 +31,7 @@ typedef struct Line
 typedef struct Text {
     float rotation;
     int printSpeed;
+    int printStartPos;
     int size;
     int spacing;
     int vertSpacing;

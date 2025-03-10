@@ -36,6 +36,7 @@ Line LINE = {
 Text TEXT = {
     .rotation = 0.0f,
     .printSpeed = 1,    // Lower number increases speed.
+    .printStartPos = 0,
     .size = 15,
     .spacing = 4,
     .vertSpacing = 10,

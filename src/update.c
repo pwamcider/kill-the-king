@@ -80,8 +80,8 @@ void UpdateGame(void) {
 
             DrawTextPro(
                 textFont,
-                TextSubtext(currentPage->text, 0, framesCounter/TEXT.printSpeed),
-                TEXT.position, TEXT.origin, TEXT.rotation, TEXT.size, TEXT.spacing, TEXT.color
+                TextSubtext(currentPage->text, TEXT.printStartPos, framesCounter/TEXT.printSpeed),
+                            TEXT.position, TEXT.origin, TEXT.rotation, TEXT.size, TEXT.spacing, TEXT.color
             );
             
     EndDrawing();
