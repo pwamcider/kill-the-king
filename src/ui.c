@@ -1,6 +1,6 @@
-#include "initialize.h"
 #include "ui.h"
 
+/// ------------------------------------------------------------
 
 int SCREENWIDTH = 1280;
 int SCREENHEIGHT = 720;
