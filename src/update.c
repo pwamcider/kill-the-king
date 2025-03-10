@@ -68,11 +68,7 @@ void UpdateGame(void) {
 
             for (int i = 0; i < numOptions; i++)
             {
-
-                // TODO - set custom color elsewhere; maybe in TEXT struct?
-                // Color myColor = { 40, 40, 40, 255 };
                 DrawTexturePro(buttonSprite, buttonSource[i], buttonDest[i], BUTTON.spriteOrigin, 0, WHITE);
-                // DrawRectangle((int)accentPosition.x, (int)accentPosition.y, 250, 25, myColor);
                 DrawTextPro(
                     textFont,
                     currentPage->options[i].prompt,
