@@ -5,6 +5,14 @@
 // Structs
 // ------------------------------------------------------------
 
+typedef struct Button {
+    float frameHeight;
+    int numFrames;
+    int state;
+    Color color;
+    Vector2 spriteOrigin;
+} Button;
+
 typedef struct Layout
 {
     Vector2 buttonPosition[4];
@@ -19,11 +27,20 @@ typedef struct Line
     Vector2 stop;
 } Line;
 
+typedef struct Text {
+    float rotation;
+    int printSpeed;
+    int size;
+    int spacing;
+    int vertSpacing;
+    Color color;
+    Vector2 origin;
+    Vector2 position;
+} Text;
+
+extern Button BUTTON;
 extern Layout LAYOUT;
 extern Line LINE;
-
-// Prototypes
-// ------------------------------------------------------------
-
-Vector2 GetLineStart();
-Vector2 GetLineStop();
+extern Text TEXT;
+extern int SCREENWIDTH;
+extern int SCREENHEIGHT;
