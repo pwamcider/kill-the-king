@@ -1,9 +1,7 @@
-#include "buttons.h"
 #include "functions.h"
 #include "raylib.h"
 #include "resources.h"
 #include "story_content.h"
-#include "text.h"
 #include "ui.h"
 #include "update.h"
 
@@ -70,8 +68,7 @@ void UpdateGame(void) {
 
             for (int i = 0; i < numOptions; i++)
             {
-                // BOOKMARK/ TODO - make an array of Vector2 inside Text struct. Use that to create the proper
-                // locations for each option, that will then be chosen automatically by this loop.
+
                 // TODO - set custom color elsewhere; maybe in TEXT struct?
                 // Color myColor = { 40, 40, 40, 255 };
                 DrawTexturePro(buttonSprite, buttonSource[i], buttonDest[i], BUTTON.spriteOrigin, 0, WHITE);
@@ -82,7 +79,7 @@ void UpdateGame(void) {
                     LAYOUT.promptPosition[i], TEXT.origin, TEXT.rotation, TEXT.size, TEXT.spacing, TEXT.color
                 );
             }
-            DrawLineEx(GetLineStart(), GetLineStop(), LINE.thickness, LINE.color);
+            DrawLineEx(LINE.start, LINE.stop, LINE.thickness, LINE.color);
 
             DrawTextPro(
                 textFont,
