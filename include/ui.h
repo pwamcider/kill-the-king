@@ -7,6 +7,7 @@
 
 typedef struct Button {
     float frameHeight;
+    float rotation;
     int numFrames;
     int state;
     Color color;

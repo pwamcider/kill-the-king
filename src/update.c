@@ -68,7 +68,8 @@ void UpdateGame(void) {
 
             for (int i = 0; i < numOptions; i++)
             {
-                DrawTexturePro(buttonSprite, buttonSource[i], buttonDest[i], BUTTON.spriteOrigin, 0, WHITE);
+                DrawTexturePro(buttonSprite, buttonSource[i], buttonDest[i],
+                               BUTTON.spriteOrigin, BUTTON.rotation, WHITE);
                 DrawTextPro(
                     textFont,
                     currentPage->options[i].prompt,

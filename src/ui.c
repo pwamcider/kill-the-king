@@ -10,6 +10,7 @@ int SCREENHEIGHT = 720;
 
 Button BUTTON = {
     .frameHeight = 0.0,
+    .rotation = 0.0,
     .numFrames = 3,
     .state = 0, // 0 = Idle, 1 = Hover, 2 = Pressed
     .color = WHITE,
