@@ -44,5 +44,5 @@ extern Button BUTTON;
 extern Layout LAYOUT;
 extern Line LINE;
 extern Text TEXT;
-extern int SCREENWIDTH;
-extern int SCREENHEIGHT;
+extern int SCREEN_WIDTH;
+extern int SCREEN_HEIGHT;
