@@ -1,8 +1,9 @@
 #pragma once
 
 #include <stdbool.h>
+#include <stdlib.h>
 
-// Structure Definitions
+// Structures
 // ------------------------------------------------------------
 
 struct Page;
@@ -24,10 +25,16 @@ typedef struct Page
 } Page;
 
 
-// Page Declarations
+// Pages
 // ------------------------------------------------------------
 
 extern Page TEST1;
 extern Page TEST2;
 
+
+// Prototypes
 // ------------------------------------------------------------
+
+bool IsOptionValid(Option* option);
+int CountOptions(Page* page);
+void PlayPage(Page* page);
