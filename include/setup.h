@@ -1,7 +1,7 @@
 #pragma once
 
 #include "raylib.h"
-#include "story_content.h"
+#include "story.h"
 #include "ui.h"
 
 // Variables

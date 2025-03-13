@@ -1,10 +1,9 @@
 #pragma once
 
-#include "functions.h"
 #include "raylib.h"
 #include "resources.h"
 #include "setup.h"
-#include "story_content.h"
+#include "story.h"
 #include "ui.h"
 
 // ------------------------------------------------------------
