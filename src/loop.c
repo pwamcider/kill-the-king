@@ -3,13 +3,15 @@
 // ------------------------------------------------------------
 
 void GameLoop(void) {
-    Vector2 mousePosition = GetMousePosition();
     *FRAME_COUNTER_PTR += 1;
+    
     BUTTON.frameHeight = GetButtonSpriteHeight()/BUTTON.numFrames;
 
     int numOptions = CountOptions(CURRENT_PAGE);
     Rectangle buttonSource[numOptions];
     Rectangle buttonDest[numOptions];
+
+    Vector2 mousePosition = GetMousePosition();
 
     for (int i = 0; i < numOptions; i++)
     {
