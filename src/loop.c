@@ -38,8 +38,9 @@ void GameLoop(void) {
 
         if (isMouseOver && IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
-            PlaySound(buttonSound);
             *FRAME_COUNTER_PTR = 0;
+            PlaySound(buttonSound);
+            CheckForConsequence(&CURRENT_PAGE->options[i]);
             CURRENT_PAGE = CURRENT_PAGE->options[i].toPage;
         }
         
