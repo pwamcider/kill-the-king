@@ -1,4 +1,4 @@
 # Kill the King
-A narrative adventure short. And very much a work in progress.
+A fantasy narrative adventure short set in a fictional kingdom. And very much a work in progress.
 
 More details forthcoming...
