@@ -19,7 +19,7 @@ struct Page;
 typedef struct Option
 {
     char prompt[256];
-    struct Consequence* toConsequence;
+    struct Ripple* toRipple;
     struct Page* toPage;
 } Option;
 
@@ -38,23 +38,29 @@ typedef struct Consequence
     Page* redirect;
 } Consequence;
 
+typedef struct Ripple
+{
+    struct Consequence consequences[5];
+} Ripple;
+
 // Prototypes
 // ------------------------------------------------------------
 
 bool IsOptionValid(Option* option);
 int CountOptions(Page* page);
-void CheckForConsequence(Option* option);
+void CheckForRipple(Option* option);
 void PlayPage(Page* page);
 
 // Pages
 // ------------------------------------------------------------
 
-extern Page TEST1;
-extern Page TEST2;
-extern Page DANCE;
 extern Page DANCE_FAIL;
+extern Page DANCE;
+extern Page TEST1;
+extern Page TEST2_BROKEN;
+extern Page TEST2;
 
 // Consequences
 // ------------------------------------------------------------
 
-extern Consequence BROKE_LEG;
+extern Ripple BROKE_LEG;
