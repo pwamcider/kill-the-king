@@ -40,7 +40,7 @@ void GameLoop(void) {
         {
             *FRAME_COUNTER_PTR = 0;
             PlaySound(buttonSound);
-            CheckForConsequence(&CURRENT_PAGE->options[i]);
+            CheckForRipple(&CURRENT_PAGE->options[i]);
             CURRENT_PAGE = CURRENT_PAGE->options[i].toPage;
         }
         
