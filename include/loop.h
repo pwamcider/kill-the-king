@@ -3,7 +3,7 @@
 #include "raylib.h"
 #include "resources.h"
 #include "setup.h"
-#include "story.h"
+#include "story_engine.h"
 #include "ui.h"
 
 // ------------------------------------------------------------
