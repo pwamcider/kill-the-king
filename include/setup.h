@@ -1,7 +1,7 @@
 #pragma once
 
+#include "pages.h"
 #include "raylib.h"
-#include "story.h"
 #include "ui.h"
 
 // Variables
