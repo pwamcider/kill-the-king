@@ -64,6 +64,30 @@ void CheckForRipple(Option* option)
     return;
 }
 
+void CheckForPageFlags(Page* page)
+{
+    if (page->checkpoint)
+    {
+        CHECKPOINT = page;
+    }
+
+    if (page->pageFlag)
+    {
+        *page->pageFlag = true;
+    }
+
+    if (page->raisedAlarm)
+    {
+        ALARM += 1;
+    }
+
+    if (page->gameOver)
+    {
+        // TODO - handle Game Over state.
+    }
+    return;
+}
+
 // Outdated - used for reference
 /* void PlayPage(Page* page)
 {
