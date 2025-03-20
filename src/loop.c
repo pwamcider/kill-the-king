@@ -40,6 +40,7 @@ void GameLoop(void) {
         {
             *FRAME_COUNTER_PTR = 0;
             PlaySound(buttonSound);
+            CheckForPageFlags(CURRENT_PAGE);
             CheckForRipple(&CURRENT_PAGE->options[i]);
             CURRENT_PAGE = CURRENT_PAGE->options[i].toPage;
         }
