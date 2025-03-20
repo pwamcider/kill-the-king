@@ -19,10 +19,17 @@ typedef struct Page
 {
     char text[2048];
     struct Option options[4];
+    bool *pageFlag;
     bool checkpoint;
     bool gameOver;
     bool raisedAlarm;
 } Page;
+
+// Variables
+// ------------------------------------------------------------
+
+extern int ALARM;
+extern Page* CHECKPOINT;
 
 // Pages
 // ------------------------------------------------------------
