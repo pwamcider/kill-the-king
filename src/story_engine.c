@@ -1,4 +1,9 @@
+#include <stdbool.h>
+#include <stdlib.h>
+
+#include "consequences.h"
 #include "story_engine.h"
+
 
 // Functions
 // ------------------------------------------------------------
@@ -61,7 +66,6 @@ void CheckForRipple(Option* option)
             target->toPage = redirect;
         }
     }
-    return;
 }
 
 void CheckForPageFlags(Page* page)
@@ -85,26 +89,4 @@ void CheckForPageFlags(Page* page)
     {
         // TODO - handle Game Over state.
     }
-    return;
 }
-
-// Outdated - used for reference
-/* void PlayPage(Page* page)
-{
-    if (page->checkpoint)
-    {
-        CHECKPOINT = page;
-    }
-
-    if (page->gameOver)
-    {
-        // TODO: game over state
-        return PlayPage(CHECKPOINT);
-    }
-    
-    if (page->raisedAlarm)
-    {
-        ALARM++;
-    }
-}
-*/

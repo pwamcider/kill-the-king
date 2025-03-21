@@ -1,9 +1,5 @@
 #pragma once
 
-#include <stdbool.h>
-#include <stdlib.h>
-
-#include "consequences.h"
 #include "pages.h"
 
 // Prototypes
