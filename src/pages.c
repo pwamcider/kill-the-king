@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 #include "consequences.h"
 #include "pages.h"
 
