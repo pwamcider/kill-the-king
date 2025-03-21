@@ -16,7 +16,7 @@ typedef struct Button {
 typedef struct Layout
 {
     Vector2 buttonPosition[4];
-    Vector2 promptPosition[4];
+    Vector2 promptOffset;
 } Layout;
 
 typedef struct Line
@@ -39,9 +39,17 @@ typedef struct Text {
     Vector2 position;
 } Text;
 
+// Declarations
+// ------------------------------------------------------------
+
 extern Button BUTTON;
 extern Layout LAYOUT;
 extern Line LINE;
 extern Text TEXT;
 extern int SCREEN_WIDTH;
 extern int SCREEN_HEIGHT;
+
+// Prototypes
+// ------------------------------------------------------------
+
+Vector2 CalculatePromptPos(float x, float y);

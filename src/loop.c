@@ -69,7 +69,8 @@ void GameLoop(void) {
                 DrawTextPro(
                     textFont,
                     CURRENT_PAGE->options[i].prompt,
-                    LAYOUT.promptPosition[i], TEXT.origin, TEXT.rotation, TEXT.size, TEXT.spacing, TEXT.color
+                    CalculatePromptPos(buttonDest[i].x, buttonDest[i].y),
+                    TEXT.origin, TEXT.rotation, TEXT.size, TEXT.spacing, TEXT.color
                 );
             }
             DrawLineEx(LINE.start, LINE.stop, LINE.thickness, LINE.color);

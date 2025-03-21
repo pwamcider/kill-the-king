@@ -18,20 +18,16 @@ Button BUTTON = {
 
 Layout LAYOUT = {
     .buttonPosition = {
-         { 850.0f, 200.0f }, {850.0f, 300.0f }, { 850.0f, 400.0f }, { 850.0f, 500.0f } 
+        { 850.0f, 200.0f }, {850.0f, 300.0f }, { 850.0f, 400.0f }, { 850.0f, 500.0f } 
     },
-    .promptPosition = {
-         { 800.0f, 200.0f }, {800.0f, 300.0f }, { 800.0f, 400.0f }, { 800.0f, 500.0f } 
-    },
+    .promptOffset = { -50.0f, -5.0f }
 };
-
-// TODO - use a Vector2 offset for prompts as opposed to relying on duplicate coordinates.
 
 Line LINE = {
     .color = WHITE,
     .thickness = 1.0,
     .start = { 640.0f, 50.0f }, 
-    .stop = { 640.0f, 670.0f },
+    .stop = { 640.0f, 670.0f }
 };
 
 Text TEXT = {
@@ -43,5 +39,14 @@ Text TEXT = {
     .vertSpacing = 10,
     .color = WHITE,
     .origin = { 0.0f, 0.0f },
-    .position = { 50.0f, 50.0f },
+    .position = { 50.0f, 50.0f }
 };
+
+// Functions
+// ------------------------------------------------------------
+
+Vector2 CalculatePromptPos(float x, float y)
+{
+    Vector2 promptPos = { x + LAYOUT.promptOffset.x, y + LAYOUT.promptOffset.y };
+    return promptPos;
+}
