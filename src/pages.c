@@ -7,6 +7,7 @@
 // ------------------------------------------------------------
 
 int ALARM = 0;
+Page *CURRENT_PAGE = &TEST1;
 Page* CHECKPOINT = NULL;
 
 // Pages

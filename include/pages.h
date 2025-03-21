@@ -28,6 +28,7 @@ typedef struct Page
 // ------------------------------------------------------------
 
 extern int ALARM;
+extern Page *CURRENT_PAGE;
 extern Page* CHECKPOINT;
 
 // Pages

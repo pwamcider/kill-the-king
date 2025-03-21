@@ -7,7 +7,6 @@
 
 extern int FRAME_COUNTER;
 extern int *FRAME_COUNTER_PTR;
-extern Page *CURRENT_PAGE;
 
 // Prototypes
 // ------------------------------------------------------------
