@@ -25,6 +25,8 @@ Layout LAYOUT = {
     },
 };
 
+// TODO - use a Vector2 offset for prompts as opposed to relying on duplicate coordinates.
+
 Line LINE = {
     .color = WHITE,
     .thickness = 1.0,
