@@ -9,7 +9,6 @@ typedef struct Button {
     float frameHeight;
     float rotation;
     int numFrames;
-    int state;
     Color color;
     Vector2 spriteOrigin;
 } Button;
