@@ -1,4 +1,9 @@
 #include "loop.h"
+#include "raylib.h"
+#include "resources.h"
+#include "setup.h"
+#include "story_engine.h"
+#include "ui.h"
 
 // ------------------------------------------------------------
 
@@ -15,6 +20,8 @@ void GameLoop(void) {
 
     for (int i = 0; i < numOptions; i++)
     {
+        int buttonState = 0;
+
         buttonSource[i].x = 0.0f;
         buttonSource[i].y = 0.0f;
         buttonSource[i].width = (float)buttonSprite.width;
@@ -29,12 +36,10 @@ void GameLoop(void) {
 
         if (isMouseOver)
         {
-            BUTTON.state = IsMouseButtonDown(MOUSE_BUTTON_LEFT) ? 1 : 2;
+            buttonState = IsMouseButtonDown(MOUSE_BUTTON_LEFT) ? 1 : 2;
         }
-        else
-        {
-            BUTTON.state = 0;
-        }
+
+        buttonSource[i].y = buttonState*BUTTON.frameHeight;
 
         if (isMouseOver && IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
@@ -43,9 +48,9 @@ void GameLoop(void) {
             CheckForPageFlags(CURRENT_PAGE);
             CheckForRipple(&CURRENT_PAGE->options[i]);
             CURRENT_PAGE = CURRENT_PAGE->options[i].toPage;
+
+            // TODO - store ripples that have been activated thus far.
         }
-        
-        buttonSource[i].y = BUTTON.state*BUTTON.frameHeight;
     }
 
     // Draw Gameloop
