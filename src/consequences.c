@@ -1,5 +1,21 @@
 #include "consequences.h"
 
+// Tracking
+// ------------------------------------------------------------
+
+bool ACTIVE_RIPPLES[NUM_RIPPLES];
+
+void ResetRipples(void) {
+    for (int i = 0; i < NUM_RIPPLES; i++)
+    {
+        ACTIVE_RIPPLES[i] = false;
+    }
+}
+
+Ripple *ALL_RIPPLES[] = {
+    &BROKE_LEG,
+};
+
 // Consequences
 // ------------------------------------------------------------
 
@@ -9,3 +25,4 @@ Ripple BROKE_LEG = {
         { .target = &TEST1.options[1], .redirect = &DANCE_FAIL }
     }
 };
+
