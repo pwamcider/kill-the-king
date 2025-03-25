@@ -12,4 +12,5 @@ extern int *FRAME_COUNTER_PTR;
 // ------------------------------------------------------------
 
 void InitGame(void);
+void SetupGame(void);
 void ShutdownGame(void);

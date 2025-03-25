@@ -1,3 +1,4 @@
+#include "consequences.h"
 #include "raylib.h"
 #include "setup.h"
 #include "ui.h"
@@ -16,6 +17,11 @@ int *FRAME_COUNTER_PTR = &FRAME_COUNTER;
 
     SetExitKey(KEY_NULL);
     SetTargetFPS(60);
+}
+
+void SetupGame(void) {
+    InitGame();
+    ResetRipples();
 }
 
 void ShutdownGame(void){

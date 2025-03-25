@@ -6,7 +6,7 @@
 
 int main(void)
 {
-    InitGame();
+    SetupGame();
 
     ResourceLoad();
 
