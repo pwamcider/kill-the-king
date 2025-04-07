@@ -10,7 +10,7 @@ struct Page;
 typedef struct Option
 {
     char prompt[256];
-    struct Ripple* toRipple;
+    struct Ripple* causeRipple;
     struct Page* toPage;
 } Option;
 
