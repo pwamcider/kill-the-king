@@ -8,6 +8,7 @@
 // ------------------------------------------------------------
 
 int ALARM;
+int CHECKPOINT_ALARM;
 Page* CURRENT_PAGE;
 Page* CHECKPOINT;
 
@@ -100,11 +101,20 @@ Page* ApplyRipples(Option* option)
     // Possibly: copy the state of the ACTIVE_RIPPLES array into a CHECKPOINT_RIPPLES array?
 }
 
+void CopyActiveRipples(void)
+{
+    for (int i = 0; i < NUM_RIPPLES; i++)
+    {
+        CHECKPOINT_RIPPLES[i] = ACTIVE_RIPPLES[i];
+    }
+}
 void CheckForPageFlags(Page* page)
 {
     if (page->checkpoint)
     {
         CHECKPOINT = page;
+        CHECKPOINT_ALARM = ALARM;
+        CopyActiveRipples();
     }
 
     if (page->pageFlag)

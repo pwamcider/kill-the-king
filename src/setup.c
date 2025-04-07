@@ -26,6 +26,7 @@ void SetupGame(void) {
     InitGame();
     ResetAllRipples();
     ALARM = 0;
+    CHECKPOINT_ALARM = 0;
     CURRENT_PAGE = &TEST1;
     CHECKPOINT = NULL;
 }
