@@ -7,5 +7,5 @@
 
 bool IsOptionValid(Option* option);
 int CountOptions(Page* page);
-void CheckForPageFlags(Page* page);
 Page* ApplyRipples(Option* option);
+void CheckForPageFlags(Page* page);
