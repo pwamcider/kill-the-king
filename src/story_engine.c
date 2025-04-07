@@ -7,9 +7,9 @@
 // Starting Variables
 // ------------------------------------------------------------
 
-int ALARM = 0;
-Page *CURRENT_PAGE = &TEST1;
-Page* CHECKPOINT = NULL;
+int ALARM;
+Page* CURRENT_PAGE;
+Page* CHECKPOINT;
 
 // Functions
 // ------------------------------------------------------------
