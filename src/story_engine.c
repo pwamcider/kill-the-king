@@ -49,23 +49,48 @@ int CountConsequences(Ripple* ripple)
     return numConsequences;
 }
 
-void CheckForRipple(Option* option)
+Page* ApplyRipples(Option* option)
 {
-
-    if (option->toRipple != NULL)
+    if (option->causeRipple != NULL)
     {
-        Ripple *ripple = option->toRipple;
+        Ripple* ripple = option->causeRipple;
 
-        int numConsequences = CountConsequences(ripple);
+        int rippleIndex;
 
-        for (int i = 0; i < numConsequences; i++)
+        for (int i = 0; i < NUM_RIPPLES; i++)
         {
-            Option* target = ripple->consequences[i].target;
-            Page* redirect = ripple->consequences[i].redirect;
+            if (ripple == ALL_RIPPLES[i])
+            {
+                rippleIndex = i;
+                break;
+            }
+        }
+        ACTIVE_RIPPLES[rippleIndex] = true;
+    }
 
-            target->toPage = redirect;
+    for (int i = 0; i < NUM_RIPPLES; i++)
+    {
+        if (ACTIVE_RIPPLES[i] == true)
+        {
+            Ripple* ripple = ALL_RIPPLES[i];
+
+            int numConsequences = CountConsequences(ripple);
+
+            for (int j = 0; j < numConsequences; j++)
+            {
+                Option* target = ripple->consequences[j].target;
+                Page* redirect = ripple->consequences[j].redirect;
+
+                if (option == target)
+                {
+                    return redirect;
+                }             
+            }
         }
     }
+    return option->toPage;
+
+    // TODO - Track how many ripples are active between a checkpoint and a game over?
 }
 
 void CheckForPageFlags(Page* page)
