@@ -113,6 +113,11 @@ void CheckForPageFlags(Page* page)
 
     if (page->gameOver)
     {
-        // TODO - handle Game Over state.
+        /* TODO - handle Game Over state.
+        Considerations: if full game over, reset both ACTIVE_RIPPLES and CHECKPOINT_RIPPLES
+        If simple death, and going back to checkpoint, take CHECKPOINT_RIPPLES and apply it to ACTIVE_RIPPLES,
+        ensuring that the state of the game returns to pre-checkpoint status.
+        ALSO: change alarmRaised to pre-death level?
+        */
     }
 }
