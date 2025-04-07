@@ -2,6 +2,13 @@
 
 #include "pages.h"
 
+// Starting Variables
+// ------------------------------------------------------------
+
+extern int ALARM;
+extern Page *CURRENT_PAGE;
+extern Page* CHECKPOINT;
+
 // Prototypes
 // ------------------------------------------------------------
 
