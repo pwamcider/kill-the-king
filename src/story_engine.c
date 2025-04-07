@@ -137,3 +137,11 @@ void CheckForPageFlags(Page* page)
         */
     }
 }
+
+void ResetAllRipples(void) {
+    for (int i = 0; i < NUM_RIPPLES; i++)
+    {
+        ACTIVE_RIPPLES[i] = false;
+        CHECKPOINT_RIPPLES[i] = false;
+    }
+}

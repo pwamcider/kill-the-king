@@ -18,3 +18,4 @@ int CountOptions(Page* page);
 Page* ApplyRipples(Option* option);
 void CheckForPageFlags(Page* page);
 void CopyActiveRipples(void);
+void ResetAllRipples(void);

@@ -25,11 +25,6 @@ extern Ripple* ALL_RIPPLES[NUM_RIPPLES];
 extern bool ACTIVE_RIPPLES[NUM_RIPPLES];
 extern bool CHECKPOINT_RIPPLES[NUM_RIPPLES];
 
-// Prototypes
-// ------------------------------------------------------------
-
-void ResetAllRipples(void);
-
 // Consequences
 // ------------------------------------------------------------
 
