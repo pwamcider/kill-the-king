@@ -23,11 +23,12 @@ typedef struct Ripple
 
 extern Ripple* ALL_RIPPLES[NUM_RIPPLES];
 extern bool ACTIVE_RIPPLES[NUM_RIPPLES];
+extern bool CHECKPOINT_RIPPLES[NUM_RIPPLES];
 
 // Prototypes
 // ------------------------------------------------------------
 
-void ResetRipples(void);
+void ResetAllRipples(void);
 
 // Consequences
 // ------------------------------------------------------------
