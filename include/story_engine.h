@@ -8,4 +8,4 @@
 bool IsOptionValid(Option* option);
 int CountOptions(Page* page);
 void CheckForPageFlags(Page* page);
-void CheckForRipple(Option* option);
+Page* ApplyRipples(Option* option);
