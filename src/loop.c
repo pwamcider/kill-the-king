@@ -49,7 +49,7 @@ void GameLoop(void) {
             Page* nextPage = ApplyRipples(&CURRENT_PAGE->options[i]);
             CURRENT_PAGE = nextPage;
 
-            // TODO - Ensure that we run ResetRipples() whenever there ius a game over state.
+            // TODO - Ensure that we run ResetRipples() whenever there is a game over state.
         }
     }
 
