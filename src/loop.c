@@ -46,10 +46,10 @@ void GameLoop(void) {
             *FRAME_COUNTER_PTR = 0;
             PlaySound(buttonSound);
             CheckForPageFlags(CURRENT_PAGE);
-            CheckForRipple(&CURRENT_PAGE->options[i]);
-            CURRENT_PAGE = CURRENT_PAGE->options[i].toPage;
+            Page* nextPage = ApplyRipples(&CURRENT_PAGE->options[i]);
+            CURRENT_PAGE = nextPage;
 
-            // TODO - store ripples that have been activated thus far.
+            // TODO - Ensure that we run ResetRipples() whenever there ius a game over state.
         }
     }
 
