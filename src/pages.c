@@ -38,8 +38,8 @@ Page DANCE_FAIL = {
 Page TEST2 = {
     .text = "You're standing in the second room.",
     .options = {
-        { .prompt = "Go to the first room.", .toPage = &TEST1, .toRipple = NULL },
-        { .prompt = "Break leg on way to first room.", .toPage = &TEST1, .toRipple = &BROKE_LEG },
+        { .prompt = "Go to the first room.", .toPage = &TEST1, .causeRipple = NULL },
+        { .prompt = "Break leg on way to first room.", .toPage = &TEST1, .causeRipple = &BROKE_LEG },
     }
 };
 
