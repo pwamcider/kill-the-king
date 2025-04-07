@@ -21,7 +21,7 @@ int *FRAME_COUNTER_PTR = &FRAME_COUNTER;
 
 void SetupGame(void) {
     InitGame();
-    ResetRipples();
+    ResetAllRipples();
 }
 
 void ShutdownGame(void){
