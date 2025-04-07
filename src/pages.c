@@ -3,7 +3,7 @@
 #include "consequences.h"
 #include "pages.h"
 
-// Variables
+// Starting Variables
 // ------------------------------------------------------------
 
 int ALARM = 0;
