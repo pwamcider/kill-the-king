@@ -24,13 +24,6 @@ typedef struct Page
     bool raisedAlarm;
 } Page;
 
-// Variables
-// ------------------------------------------------------------
-
-extern int ALARM;
-extern Page *CURRENT_PAGE;
-extern Page* CHECKPOINT;
-
 // Pages
 // ------------------------------------------------------------
 
