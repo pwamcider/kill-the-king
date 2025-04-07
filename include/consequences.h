@@ -21,7 +21,7 @@ typedef struct Ripple
 // Tracking
 // ------------------------------------------------------------
 
-extern Ripple *ALL_RIPPLES[NUM_RIPPLES];
+extern Ripple* ALL_RIPPLES[NUM_RIPPLES];
 extern bool ACTIVE_RIPPLES[NUM_RIPPLES];
 
 // Prototypes
