@@ -2,6 +2,8 @@
 
 #include <stdbool.h>
 
+#include "ui.h"
+
 // Structs
 // ------------------------------------------------------------
 
@@ -17,7 +19,7 @@ typedef struct Option
 typedef struct Page
 {
     char text[2048];
-    struct Option options[4];
+    struct Option options[MAX_OPTIONS];
     bool *pageFlag;
     bool checkpoint;
     bool gameOver;
