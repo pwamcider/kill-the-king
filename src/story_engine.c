@@ -96,9 +96,6 @@ Page* ApplyRipples(Option* option)
         }
     }
     return option->toPage;
-
-    // TODO - Track how many ripples are active between a checkpoint and a game over?
-    // Possibly: copy the state of the ACTIVE_RIPPLES array into a CHECKPOINT_RIPPLES array?
 }
 
 void CopyActiveRipples(void)
