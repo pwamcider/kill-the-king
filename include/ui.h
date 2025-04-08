@@ -2,6 +2,8 @@
 
 #include "raylib.h"
 
+#define MAX_OPTIONS 4
+
 // Structs
 // ------------------------------------------------------------
 
@@ -15,7 +17,10 @@ typedef struct Button {
 
 typedef struct Layout
 {
-    Vector2 buttonPosition[4];
+    int numOptions;
+    Rectangle buttonDest[MAX_OPTIONS];
+    Rectangle buttonSource[MAX_OPTIONS];
+    Vector2 buttonPosition[MAX_OPTIONS];
     Vector2 promptOffset;
 } Layout;
 
