@@ -12,34 +12,32 @@ void GameLoop(void) {
     
     BUTTON.frameHeight = GetButtonSpriteHeight()/BUTTON.numFrames;
 
-    int numOptions = CountOptions(CURRENT_PAGE);
-    Rectangle buttonSource[numOptions];
-    Rectangle buttonDest[numOptions];
+    LAYOUT.numOptions = CountOptions(CURRENT_PAGE);
 
     Vector2 mousePosition = GetMousePosition();
 
-    for (int i = 0; i < numOptions; i++)
+    for (int i = 0; i < LAYOUT.numOptions; i++)
     {
         int buttonState = 0;
 
-        buttonSource[i].x = 0.0f;
-        buttonSource[i].y = 0.0f;
-        buttonSource[i].width = (float)buttonSprite.width;
-        buttonSource[i].height = BUTTON.frameHeight;
+        LAYOUT.buttonSource[i].x = 0.0f;
+        LAYOUT.buttonSource[i].y = 0.0f;
+        LAYOUT.buttonSource[i].width = (float)buttonSprite.width;
+        LAYOUT.buttonSource[i].height = BUTTON.frameHeight;
         
-        buttonDest[i].x = LAYOUT.buttonPosition[i].x;
-        buttonDest[i].y = LAYOUT.buttonPosition[i].y;
-        buttonDest[i].width = (float)buttonSprite.width;
-        buttonDest[i].height = BUTTON.frameHeight;
+        LAYOUT.buttonDest[i].x = LAYOUT.buttonPosition[i].x;
+        LAYOUT.buttonDest[i].y = LAYOUT.buttonPosition[i].y;
+        LAYOUT.buttonDest[i].width = (float)buttonSprite.width;
+        LAYOUT.buttonDest[i].height = BUTTON.frameHeight;
 
-        const bool isMouseOver = CheckCollisionPointRec(mousePosition, buttonDest[i]);
+        const bool isMouseOver = CheckCollisionPointRec(mousePosition, LAYOUT.buttonDest[i]);
 
         if (isMouseOver)
         {
             buttonState = IsMouseButtonDown(MOUSE_BUTTON_LEFT) ? 1 : 2;
         }
 
-        buttonSource[i].y = buttonState*BUTTON.frameHeight;
+        LAYOUT.buttonSource[i].y = buttonState*BUTTON.frameHeight;
 
         if (isMouseOver && IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
@@ -62,14 +60,14 @@ void GameLoop(void) {
             
             SetTextLineSpacing(TEXT.vertSpacing);
 
-            for (int i = 0; i < numOptions; i++)
+            for (int i = 0; i < LAYOUT.numOptions; i++)
             {
-                DrawTexturePro(buttonSprite, buttonSource[i], buttonDest[i],
+                DrawTexturePro(buttonSprite, LAYOUT.buttonSource[i], LAYOUT.buttonDest[i],
                                BUTTON.spriteOrigin, BUTTON.rotation, WHITE);
                 DrawTextPro(
                     textFont,
                     CURRENT_PAGE->options[i].prompt,
-                    CalculatePromptPos(buttonDest[i].x, buttonDest[i].y),
+                    CalculatePromptPos(LAYOUT.buttonDest[i].x, LAYOUT.buttonDest[i].y),
                     TEXT.origin, TEXT.rotation, TEXT.size, TEXT.spacing, TEXT.color
                 );
             }
@@ -82,5 +80,4 @@ void GameLoop(void) {
             );
             
     EndDrawing();
-
 }
