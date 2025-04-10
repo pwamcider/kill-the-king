@@ -1,4 +1,3 @@
-#include "loop.h"
 #include "raylib.h"
 #include "resources.h"
 #include "setup.h"
@@ -12,7 +11,7 @@ int main(void)
 
     while (!WindowShouldClose())
     {
-        GameLoop();
+        UpdateGame();
     }
 
     ResourceUnload();
