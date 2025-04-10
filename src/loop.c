@@ -3,7 +3,6 @@
 #include "resources.h"
 #include "setup.h"
 #include "story_engine.h"
-#include "ui.h"
 
 // ------------------------------------------------------------
 
@@ -50,34 +49,4 @@ void GameLoop(void) {
             // TODO - Ensure that we run ResetRipples() whenever there is a game over state.
         }
     }
-
-    // Draw Gameloop
-    // ------------------------------------------------------------
-    
-    BeginDrawing();
-
-            ClearBackground(BLACK);
-            
-            SetTextLineSpacing(TEXT.vertSpacing);
-
-            for (int i = 0; i < LAYOUT.numOptions; i++)
-            {
-                DrawTexturePro(buttonSprite, LAYOUT.buttonSource[i], LAYOUT.buttonDest[i],
-                               BUTTON.spriteOrigin, BUTTON.rotation, WHITE);
-                DrawTextPro(
-                    textFont,
-                    CURRENT_PAGE->options[i].prompt,
-                    CalculatePromptPos(LAYOUT.buttonDest[i].x, LAYOUT.buttonDest[i].y),
-                    TEXT.origin, TEXT.rotation, TEXT.size, TEXT.spacing, TEXT.color
-                );
-            }
-            DrawLineEx(LINE.start, LINE.stop, LINE.thickness, LINE.color);
-
-            DrawTextPro(
-                textFont,
-                TextSubtext(CURRENT_PAGE->text, TEXT.printStartPos, *FRAME_COUNTER_PTR/TEXT.printSpeed),
-                            TEXT.position, TEXT.origin, TEXT.rotation, TEXT.size, TEXT.spacing, TEXT.color
-            );
-            
-    EndDrawing();
 }
