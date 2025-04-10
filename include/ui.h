@@ -7,6 +7,11 @@
 // Structs
 // ------------------------------------------------------------
 
+typedef enum GameState {
+    MAIN_MENU = 0,
+    GAME_LOOP = 1,
+} GameState;
+
 typedef struct Button {
     float frameHeight;
     float rotation;
@@ -48,11 +53,12 @@ typedef struct Text {
 // ------------------------------------------------------------
 
 extern Button BUTTON;
+extern GameState GAME_STATE;
+extern int SCREEN_HEIGHT;
+extern int SCREEN_WIDTH;
 extern Layout LAYOUT;
 extern Line LINE;
 extern Text TEXT;
-extern int SCREEN_WIDTH;
-extern int SCREEN_HEIGHT;
 
 // Prototypes
 // ------------------------------------------------------------
