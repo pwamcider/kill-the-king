@@ -31,6 +31,7 @@ typedef struct Page
 
 extern Page DANCE_FAIL;
 extern Page DANCE;
+extern Page MENU0;
 extern Page TEST1;
 extern Page TEST2_BROKEN;
 extern Page TEST2;
