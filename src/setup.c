@@ -25,9 +25,10 @@ int *FRAME_COUNTER_PTR = &FRAME_COUNTER;
 void SetupGame(void) {
     InitGame();
     ResetAllRipples();
+    GAME_STATE = MAIN_MENU;
     ALARM = 0;
     CHECKPOINT_ALARM = 0;
-    CURRENT_PAGE = &TEST1;
+    CURRENT_PAGE = &MENU0;
     CHECKPOINT = NULL;
 }
 
