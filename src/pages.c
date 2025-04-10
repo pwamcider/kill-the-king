@@ -6,6 +6,12 @@
 // Pages
 // ------------------------------------------------------------
 
+Page MENU0 = {
+    .options = {
+        { .prompt = "Start Game", .toPage = &TEST1 },
+    }
+};
+
 Page TEST1 = {
     .text = "You're standing in the first room.",
     .options = {
