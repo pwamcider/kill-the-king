@@ -105,6 +105,15 @@ void CopyActiveRipples(void)
         CHECKPOINT_RIPPLES[i] = ACTIVE_RIPPLES[i];
     }
 }
+
+void ResetAllRipples(void) {
+    for (int i = 0; i < NUM_RIPPLES; i++)
+    {
+        ACTIVE_RIPPLES[i] = false;
+        CHECKPOINT_RIPPLES[i] = false;
+    }
+}
+
 void CheckForPageFlags(Page* page)
 {
     if (page->checkpoint)
@@ -132,13 +141,5 @@ void CheckForPageFlags(Page* page)
         ensuring that the state of the game returns to pre-checkpoint status.
         ALSO: change alarmRaised to pre-death level?
         */
-    }
-}
-
-void ResetAllRipples(void) {
-    for (int i = 0; i < NUM_RIPPLES; i++)
-    {
-        ACTIVE_RIPPLES[i] = false;
-        CHECKPOINT_RIPPLES[i] = false;
     }
 }
