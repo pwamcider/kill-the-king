@@ -7,7 +7,7 @@
 
 extern int ALARM;
 extern int CHECKPOINT_ALARM;
-extern Page *CURRENT_PAGE;
+extern Page* CURRENT_PAGE;
 extern Page* CHECKPOINT;
 
 // Prototypes
@@ -18,4 +18,7 @@ int CountOptions(Page* page);
 Page* ApplyRipples(Option* option);
 void CheckForPageFlags(Page* page);
 void CopyActiveRipples(void);
+void CopyCheckpointRipples(void);
+void LoadCheckpoint(void);
 void ResetAllRipples(void);
+void SaveCheckpoint(void);

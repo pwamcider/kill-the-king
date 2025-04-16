@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include "consequences.h"
+#include "setup.h"
 #include "story_engine.h"
 
 // Starting Variables
@@ -77,7 +78,7 @@ Page* ApplyRipples(Option* option)
 
     for (int i = 0; i < NUM_RIPPLES; i++)
     {
-        if (ACTIVE_RIPPLES[i] == true)
+        if (ACTIVE_RIPPLES[i])
         {
             Ripple* ripple = ALL_RIPPLES[i];
 
@@ -106,6 +107,13 @@ void CopyActiveRipples(void)
     }
 }
 
+void CopyCheckpointRipples(void) {
+    for (int i = 0; i < NUM_RIPPLES; i++)
+    {
+        ACTIVE_RIPPLES[i] = CHECKPOINT_RIPPLES[i];
+    }
+}
+
 void ResetAllRipples(void) {
     for (int i = 0; i < NUM_RIPPLES; i++)
     {
@@ -114,13 +122,25 @@ void ResetAllRipples(void) {
     }
 }
 
+void SaveCheckpoint(void)
+{
+    CHECKPOINT = CURRENT_PAGE;
+    CHECKPOINT_ALARM = ALARM;
+    CopyActiveRipples();
+}
+
+void LoadCheckpoint(void)
+{
+    CURRENT_PAGE = CHECKPOINT;
+    ALARM = CHECKPOINT_ALARM;
+    CopyCheckpointRipples();
+}
+
 void CheckForPageFlags(Page* page)
 {
     if (page->checkpoint)
     {
-        CHECKPOINT = page;
-        CHECKPOINT_ALARM = ALARM;
-        CopyActiveRipples();
+        SaveCheckpoint();
     }
 
     if (page->pageFlag)
@@ -135,11 +155,6 @@ void CheckForPageFlags(Page* page)
 
     if (page->gameOver)
     {
-        /* TODO - handle Game Over state.
-        Considerations: if full game over, reset both ACTIVE_RIPPLES and CHECKPOINT_RIPPLES
-        If simple death, and going back to checkpoint, take CHECKPOINT_RIPPLES and apply it to ACTIVE_RIPPLES,
-        ensuring that the state of the game returns to pre-checkpoint status.
-        ALSO: change alarmRaised to pre-death level?
-        */
+        ResetGameState();
     }
 }
