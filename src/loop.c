@@ -43,10 +43,14 @@ void GameLoop(void) {
             *FRAME_COUNTER_PTR = 0;
             PlaySound(buttonSound);
             CheckForPageFlags(CURRENT_PAGE);
-            Page* nextPage = ApplyRipples(&CURRENT_PAGE->options[i]);
-            CURRENT_PAGE = nextPage;
-
-            // TODO - Ensure that we run ResetRipples() whenever there is a game over state.
+            if (!CURRENT_PAGE->failState)
+            {
+                CURRENT_PAGE = ApplyRipples(&CURRENT_PAGE->options[i]);
+            }
+            else
+            {
+                LoadCheckpoint();
+            }
         }
     }
 }
