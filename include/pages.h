@@ -24,6 +24,7 @@ typedef struct Page
     bool checkpoint;
     bool gameOver;
     bool raisedAlarm;
+    bool failState;
 } Page;
 
 // Pages
@@ -31,7 +32,9 @@ typedef struct Page
 
 extern Page DANCE_FAIL;
 extern Page DANCE;
+extern Page FAIL_STATE;
 extern Page MENU0;
 extern Page TEST1;
 extern Page TEST2_BROKEN;
 extern Page TEST2;
+extern Page TEST3;
