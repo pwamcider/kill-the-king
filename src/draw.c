@@ -56,5 +56,8 @@ void DrawMain(void) {
 
         DrawButtons();
 
+        DrawPrompt();
+        // TODO - remove this DrawPrompt() once main menu has art underneathe.
+
     EndDrawing();
 }
