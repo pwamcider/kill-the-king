@@ -33,6 +33,7 @@ typedef struct Page
 extern Page DANCE_FAIL;
 extern Page DANCE;
 extern Page FAIL_STATE;
+extern Page GAME_OVER;
 extern Page MENU0;
 extern Page TEST1;
 extern Page TEST2_BROKEN;
