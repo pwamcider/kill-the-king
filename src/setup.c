@@ -22,14 +22,18 @@ int *FRAME_COUNTER_PTR = &FRAME_COUNTER;
     SetTargetFPS(60);
 }
 
+void ResetGameState(void) {
+    ResetAllRipples();
+    ALARM = 0;
+    CHECKPOINT = NULL;
+    CHECKPOINT_ALARM = 0;
+    GAME_STATE = MAIN_MENU;
+}
+
 void SetupGame(void) {
     InitGame();
-    ResetAllRipples();
-    GAME_STATE = MAIN_MENU;
-    ALARM = 0;
-    CHECKPOINT_ALARM = 0;
+    ResetGameState();
     CURRENT_PAGE = &MENU0;
-    CHECKPOINT = NULL;
 }
 
 void ShutdownGame(void){
