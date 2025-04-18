@@ -131,14 +131,23 @@ void SaveCheckpoint(void)
 
 void LoadCheckpoint(Option* option)
 {
-    if (option->toPage != &QUIT)
+    Page* target = option->toPage;
+
+    if ((target != &QUIT) && (target != &MENU0))
     {
         CURRENT_PAGE = CHECKPOINT;
         ALARM = CHECKPOINT_ALARM;
         CopyCheckpointRipples();
     }
+    else if (target == &MENU0 )
+    {
+        CURRENT_PAGE = &MENU0;
+        ResetGameState();
+    }
     else
+    {
         CURRENT_PAGE = &QUIT;
+    }
 }
 
 void CheckForPageFlags(Page* page)
