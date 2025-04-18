@@ -19,6 +19,6 @@ Page* ApplyRipples(Option* option);
 void CheckForPageFlags(Page* page);
 void CopyActiveRipples(void);
 void CopyCheckpointRipples(void);
-void LoadCheckpoint(void);
+void LoadCheckpoint(Option* option);
 void ResetAllRipples(void);
 void SaveCheckpoint(void);

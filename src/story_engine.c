@@ -129,11 +129,16 @@ void SaveCheckpoint(void)
     CopyActiveRipples();
 }
 
-void LoadCheckpoint(void)
+void LoadCheckpoint(Option* option)
 {
-    CURRENT_PAGE = CHECKPOINT;
-    ALARM = CHECKPOINT_ALARM;
-    CopyCheckpointRipples();
+    if (option->toPage != &QUIT)
+    {
+        CURRENT_PAGE = CHECKPOINT;
+        ALARM = CHECKPOINT_ALARM;
+        CopyCheckpointRipples();
+    }
+    else
+        CURRENT_PAGE = &QUIT;
 }
 
 void CheckForPageFlags(Page* page)
