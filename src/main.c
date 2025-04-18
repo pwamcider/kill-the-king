@@ -12,6 +12,11 @@ int main(void)
     while (!WindowShouldClose())
     {
         UpdateGame();
+
+        if (GAME_STATE == GAME_QUIT)
+        {
+            break;
+        }
     }
 
     ResourceUnload();
