@@ -49,7 +49,7 @@ void GameLoop(void) {
             }
             else
             {
-                LoadCheckpoint();
+                LoadCheckpoint(&CURRENT_PAGE->options[i]);
             }
         }
     }
