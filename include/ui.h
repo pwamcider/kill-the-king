@@ -10,6 +10,7 @@
 typedef enum GameState {
     MAIN_MENU = 0,
     GAME_LOOP = 1,
+    GAME_QUIT = 2,
 } GameState;
 
 typedef struct Button {
