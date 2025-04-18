@@ -71,7 +71,7 @@ Page TEST2_BROKEN = {
     .text = "You're standing wobbly in the second room on one leg.",
     .options = {
         { .prompt = "Hobble to the first room.", .toPage = &TEST1 },
-        { .prompt = "Hobble to the third room.", .toPage =&TEST3 }
+        { .prompt = "Hobble to the third room.", .toPage = &TEST3 }
     }
 };
 
@@ -80,6 +80,7 @@ Page TEST3 = {
     .options = {
         { .prompt = "Walk into the bottomless pit\n"
                     "and fall to your death.", .toPage = &FAIL_STATE },
+        { .prompt = "Go back to the first room. This one's awful.", .toPage = &TEST1 },
         { .prompt = "Game Over test.", .toPage = &GAME_OVER }
     },
     .checkpoint = true
