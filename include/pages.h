@@ -35,6 +35,7 @@ extern Page DANCE;
 extern Page FAIL_STATE;
 extern Page GAME_OVER;
 extern Page MENU0;
+extern Page QUIT;
 extern Page TEST1;
 extern Page TEST2_BROKEN;
 extern Page TEST2;

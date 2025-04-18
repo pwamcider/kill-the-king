@@ -11,14 +11,18 @@ Page MENU0 = {
     .text = "KILL THE KING",
     // TODO - remove this text once main menu art is in.
     .options = {
-        { .prompt = "Start Game", .toPage = &TEST1 }
+        { .prompt = "Start Game", .toPage = &TEST1 },
+        { .prompt = "Quit Game", .toPage = &QUIT }
     }
 };
+
+Page QUIT;
 
 Page GAME_OVER = {
     .text = "Game over. Thank you for playing.",
     .options = {
-        { .prompt = "Main Menu", .toPage = &MENU0 }
+        { .prompt = "Main Menu", .toPage = &MENU0 },
+        { .prompt = "Quit Game", .toPage = &QUIT }
     },
     .gameOver = true
 };
@@ -26,7 +30,8 @@ Page GAME_OVER = {
 Page FAIL_STATE = {
     .text ="You died.",
     .options = {
-        { .prompt = "Return to checkpoint.", .toPage = &GAME_OVER }
+        { .prompt = "Return to checkpoint.", .toPage = &GAME_OVER },
+        { .prompt = "Quit Game", .toPage = &QUIT }
     },
     .failState = true
 };
