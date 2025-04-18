@@ -14,14 +14,24 @@ void UpdateGame(void) {
     case MAIN_MENU:
         GameLoop();
         DrawMain();
-        if (CURRENT_PAGE != &MENU0)
+        if ((CURRENT_PAGE != &MENU0) && (CURRENT_PAGE != &QUIT ))
         {
             GAME_STATE = GAME_LOOP;
+        }
+        if (CURRENT_PAGE == &QUIT)
+        {
+            GAME_STATE = GAME_QUIT;
         }
         break;
     case GAME_LOOP:
         GameLoop();
         DrawLoop();
+        if (CURRENT_PAGE == &QUIT)
+        {
+            GAME_STATE = GAME_QUIT;
+        }
+        break;
+    case GAME_QUIT:
         break;
     default:
         break;
