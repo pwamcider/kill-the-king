@@ -16,7 +16,9 @@ Page MENU0 = {
     }
 };
 
-Page QUIT;
+Page QUIT = {
+    .gameOver = true
+};
 
 Page GAME_OVER = {
     .text = "Game over. Thank you for playing.",
@@ -31,6 +33,7 @@ Page FAIL_STATE = {
     .text ="You died.",
     .options = {
         { .prompt = "Return to checkpoint.", .toPage = &GAME_OVER },
+        { .prompt = "Main Menu", .toPage = &MENU0 },
         { .prompt = "Quit Game", .toPage = &QUIT }
     },
     .failState = true
