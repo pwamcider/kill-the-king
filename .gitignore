@@ -13,6 +13,9 @@
 # Testing folder
 testing/
 
+# WIP files folder
+working_files/
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 

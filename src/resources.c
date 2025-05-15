@@ -14,7 +14,7 @@ Texture2D buttonSprite;
 void ResourceLoad(void) {
     textFont = LoadFont("resources/fonts/pixantiqua.png");
     buttonSound = LoadSound("resources/temp_buttonfx.wav");
-    buttonSprite = LoadTexture("resources/temp_button.png");
+    buttonSprite = LoadTexture("resources/button.png");
 }
 
 void ResourceUnload(void) {
