@@ -22,7 +22,7 @@ Layout LAYOUT = {
     .buttonPosition = {
         { 850.0f, 200.0f }, {850.0f, 300.0f }, { 850.0f, 400.0f }, { 850.0f, 500.0f } 
     },
-    .promptOffset = { -50.0f, -5.0f }
+    .promptOffset = { -50.0f, -20.0f }
 };
 
 Line LINE = {
